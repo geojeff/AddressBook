@@ -17,30 +17,30 @@ AddressBook.mainPage = SC.Page.design({
       contentView: SC.SplitView.design({
         dividerThickness: 1,
         defaultThickness: 300,
+
         topLeftView: SC.SourceListView.design({
-              content: ["Elizabeth Jones", "Arnold Washington", "Pete Matthews"]
+          contentValueKey: 'name',
+          contentBinding: 'AddressBook.contactsController.content',
+          selectionBinding: 'AddressBook.contactsController.selection'
         }),
+
         bottomRightView: SC.View.design({
-          childViews: 'contactDetails'.w(),
-
-          contactDetails: SC.View.design({
-            layout: { top: 50, left: 50, bottom: 50, right: 50 },
-            childViews: 'nameLabel phoneLabel addressLabel'.w(),
-
-            nameLabel: SC.LabelView.design({
-              layout: { width: 500, height: 18 },
-              value: "Contact name"
-            }),
-
-            phoneLabel: SC.LabelView.design({
-              layout: { top: 40, width: 500, height: 18 },
-                value: "Contact phone number"
-              }),
-
-            addressLabel: SC.LabelView.design({
-              layout: { top: 80, width: 500, height: 500 },
-              value: "Contact address"
-            })
+          layout: { top: 50, left: 50, bottom: 50, right: 20 },
+          childViews: 'nameLabel phoneLabel addressLabel'.w(),
+        
+          nameLabel: SC.LabelView.design({
+            layout: { width: 500, height: 18 },
+            valueBinding: SC.Binding.oneWay('AddressBook.contactController.name')
+          }),
+        
+          phoneLabel: SC.LabelView.design({
+            layout: { top: 40, width: 500, height: 18 },
+            valueBinding: SC.Binding.oneWay('AddressBook.contactController.phone')
+          }),
+        
+          addressLabel: SC.LabelView.design({
+            layout: { top: 80, width: 500, height: 500 },
+            valueBinding: SC.Binding.oneWay('AddressBook.contactController.address')
           })
         })
       })
