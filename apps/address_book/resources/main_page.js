@@ -12,12 +12,37 @@ AddressBook.mainPage = SC.Page.design({
   // load.
   mainPane: SC.MainPane.design({
     childViews: 'workspaceView'.w(),
+
     workspaceView: SC.WorkspaceView.design({
       contentView: SC.SplitView.design({
         dividerThickness: 1,
         defaultThickness: 300,
-        topLeftView: SC.View,
-        bottomRightView: SC.View
+        topLeftView: SC.SourceListView.design({
+              content: ["Elizabeth Jones", "Arnold Washington", "Pete Matthews"]
+        }),
+        bottomRightView: SC.View.design({
+          childViews: 'contactDetails'.w(),
+
+          contactDetails: SC.View.design({
+            layout: { top: 50, left: 50, bottom: 50, right: 50 },
+            childViews: 'nameLabel phoneLabel addressLabel'.w(),
+
+            nameLabel: SC.LabelView.design({
+              layout: { width: 500, height: 18 },
+              value: "Contact name"
+            }),
+
+            phoneLabel: SC.LabelView.design({
+              layout: { top: 40, width: 500, height: 18 },
+                value: "Contact phone number"
+              }),
+
+            addressLabel: SC.LabelView.design({
+              layout: { top: 80, width: 500, height: 500 },
+              value: "Contact address"
+            })
+          })
+        })
       })
     })
   })
