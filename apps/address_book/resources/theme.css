@@ -1,0 +1,10 @@
+.app-usage-hint {
+  background-color: #eee;
+}
+
+.app-usage-hint h1 {
+  font-family: "Helvetica Neue Light", "HelveticaNeue-Light", inherit;
+  font-size: 28px !important;
+  line-height: 20px !important;
+  color: #999;
+}
