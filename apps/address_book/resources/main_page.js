@@ -25,22 +25,39 @@ AddressBook.mainPage = SC.Page.design({
         }),
 
         bottomRightView: SC.View.design({
-          layout: { top: 50, left: 50, bottom: 50, right: 20 },
-          childViews: 'nameLabel phoneLabel addressLabel'.w(),
+          childViews: 'usageHint contactDetails'.w(),
+
+          usageHint: SC.View.design({
+            classNames: 'app-usage-hint',
+            isVisibleBinding: SC.Binding.not('AddressBook.contactsController.hasSelection'),
         
-          nameLabel: SC.LabelView.design({
-            layout: { width: 500, height: 18 },
-            valueBinding: SC.Binding.oneWay('AddressBook.contactController.name')
+            childViews: [SC.LabelView.design({
+              layout: { width: 300, height: 22, centerX: 0, centerY: 0 },
+              tagName: 'h1',
+              textAlign: SC.ALIGN_CENTER,
+              value: "Select a contact"
+            })]
           }),
+
+          contactDetails: SC.View.design({
+            layout: { top: 50, left: 50, bottom: 50, right: 20 },
         
-          phoneLabel: SC.LabelView.design({
-            layout: { top: 40, width: 500, height: 18 },
-            valueBinding: SC.Binding.oneWay('AddressBook.contactController.phone')
-          }),
+            childViews: 'nameLabel phoneLabel addressLabel'.w(),
         
-          addressLabel: SC.LabelView.design({
-            layout: { top: 80, width: 500, height: 500 },
-            valueBinding: SC.Binding.oneWay('AddressBook.contactController.address')
+            nameLabel: SC.LabelView.design({
+              layout: { width: 500, height: 18 },
+              valueBinding: 'AddressBook.contactController.name'
+            }),
+        
+            phoneLabel: SC.LabelView.design({
+              layout: { top: 40, width: 500, height: 18 },
+              valueBinding: 'AddressBook.contactController.phone'
+            }),
+        
+            addressLabel: SC.LabelView.design({
+              layout: { top: 80, width: 500, height: 500 },
+              valueBinding: 'AddressBook.contactController.address'
+            })
           })
         })
       })
